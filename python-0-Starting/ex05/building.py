@@ -7,7 +7,7 @@ def ispunct(c: chr) -> bool:
     Return 0 otherwise.
     """
 
-    if (c in "~.,:;!?\"\'()[]{}<>-_@#$%^&*+=\\|/"):
+    if (c in "~.,:;!?\"'`()[]{}<>-_@#$%^&*+=\\|/"):
         return True
 
 
@@ -44,6 +44,7 @@ def main():
 
     try:
         assert len(sys.argv) <= 2, "more than one argument is provided"
+        input_string = ""
         if (len(sys.argv) < 2):
             try:
                 input_string = input("What is the text to count?\n")
@@ -53,7 +54,8 @@ def main():
         else:
             input_string = sys.argv[1]
         count_and_print(input_string)
-
+    except KeyboardInterrupt:
+        sys.exit()
     except AssertionError as msg:
         print("AssertionError: ", msg)
 

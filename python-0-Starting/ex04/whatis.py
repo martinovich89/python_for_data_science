@@ -5,7 +5,8 @@ try:
     assert len(sys.argv) <= 2, "more than one argument is provided"
 
     if (len(sys.argv) < 2):
-	    exit()
+        print("")
+        exit()
     n = int(sys.argv[1])
     s = ""
     if ((n % 2) == 0):
@@ -15,6 +16,6 @@ try:
     print(f"I'm {s}\n")
 except AssertionError as msg:
     print("AssertionError:", msg)
-    print("\n")
+    print("")
 except ValueError:
     print("AssertionError: argument is not an integer\n")
