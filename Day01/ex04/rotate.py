@@ -58,12 +58,15 @@ def main():
         # Load the image
         img = ft_load("animal.jpeg")
 
+        # Add this check for the modified ft_load (same as previous exercise).
+        if not img:
+            print("An error occured during image loading, stopping now")
+            return
+
         # Get image dimensions
         h, w, _ = img.shape
 
-        # Check if image is large enough for 400x400 crop
-        if h < 400 or w < 400:
-            raise ValueError("Image too small for 400x400 crop")
+        # You can remove this check for the same reasons as previous exercise.
 
         # Calculate crop area
         crop_size = 400
@@ -113,7 +116,8 @@ def main():
     except FileNotFoundError as error:
         print("Error: Image file not found - ", error)
     except ValueError as error:
-        print("Error: ", error)
+        # To keep the same messages as previous exercise
+        print("Error: Invalid image data - ", error)
     except Exception as error:
         print("Error: ", error)
 
