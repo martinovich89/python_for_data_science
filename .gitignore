@@ -1,0 +1,61 @@
+# Environnement virtuel
+venv/
+env/
+.venv/
+.env/
+
+# Fichiers Python compilés
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Fichiers de logs / debug
+*.log
+
+# Notebooks Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Configurations d’éditeur
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers de test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+.cache
+.pytest_cache/
+
+# fichiers temporaires
+*.tmp
+*.swp
+*.bak
+
+# fichiers d’environnement
+.env
+.env.*
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# mypy
+.mypy_cache/
+
+# profiling
+.prof
+
+# requirements lock
+poetry.lock
+Pipfile.lock
+
