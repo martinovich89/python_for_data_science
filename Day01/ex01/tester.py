@@ -1,5 +1,6 @@
 from array2D import slice_me
 
+
 def main():
     """Main function for testing"""
     try:
