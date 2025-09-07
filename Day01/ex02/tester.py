@@ -1,5 +1,5 @@
 from load_image import ft_load
-
+from typing import cast
 
 def main():
     """Main function for testing"""
@@ -28,7 +28,10 @@ def main():
             print("Unsupported format error handled correctly")
 
         try:
-            ft_load(123)  # Wrong type
+            # Use cast here to satisfy type-checkers (for example I'm using
+            # and it removes the red squigles), it doesn't do anything
+            # else at runtime.
+            ft_load(cast(str, 123))  # Wrong type
         except TypeError:
             print("TypeError handled correctly")
 

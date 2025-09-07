@@ -27,14 +27,21 @@ def give_bmi(height: list[int | float], weight: list[int | float])\
 
 def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
     try:
-        if not isinstance(bmi, list) or not isinstance(limit, int):
-            raise TypeError("types for arguments must be (list, int)")
+        # You don't need the second check because you are checking for the same
+        # thing just below.
+        if not isinstance(bmi, list):
+            raise ValueError("bmi argument must be a list")
         if not all(isinstance(b, (int, float)) for b in bmi):
-            raise ValueError("bmi must be int/float")
-        if not isinstance(limit, (int, float)):
-            raise ValueError("limit must be finite int/float")
+            # I changed the message according to the fact that bmi is an array of value,
+            # not a number value itself, so it wasn't clear
+            raise ValueError("bmi values must be ints/floats")
+        if not isinstance(limit, int):
+            # You removed the infinity check but you forgot to remove its mention in the
+            # error message, plus limit should only be integer, not float.
+            raise ValueError("limit must be int/float")
         if any(b <= 0 for b in bmi) or limit <= 0:
-            raise ValueError("heights and weights must be strictly positive")
+            # The message was not correct here.
+            raise ValueError("bmi values and limit must be strictly positive values")
 
         bmi_array = np.array(bmi, dtype=float)
 
@@ -42,16 +49,3 @@ def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
     except Exception as error:
         print("Error:", error)
         return []
-
-
-def main() -> None:
-    from give_bmi import give_bmi, apply_limit
-    height = [2.71, 1.15]
-    weight = [165.3, 38.4]
-    bmi = give_bmi(height, weight)
-    print(bmi, type(bmi))
-    print(apply_limit(bmi, 26))
-
-
-if __name__ == "__main__":
-    main()

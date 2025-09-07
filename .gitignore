@@ -58,4 +58,3 @@ build/
 # requirements lock
 poetry.lock
 Pipfile.lock
-

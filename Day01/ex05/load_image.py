@@ -1,6 +1,5 @@
 import numpy as np
 from PIL import Image
-import matplotlib.pyplot as plt
 import os
 
 
@@ -25,9 +24,9 @@ def ft_load(path: str) -> np.ndarray:
         if not isinstance(path, str):
             raise TypeError("Path must be a string")
 
-        # Check if file exists
-        if not os.path.exists(path):
-            raise FileNotFoundError(f"File '{path}' not found")
+        # You don't need to check if the file exists here because Image.open
+        # already throws FileNotFoundError in that case and you already
+        # caught the FileNotFoundError exception bellow.
 
         # Get file extension to check format
         _, extension = os.path.splitext(path.lower())
@@ -45,24 +44,17 @@ def ft_load(path: str) -> np.ndarray:
                 img = img.convert('RGB')
 
             # Convert to numpy array
-            image_array = np.array(img)
-            print("The shape of image is:", image_array.shape)
-            print(image_array)
+            # Since you are just reinterpreting already converted data, you can
+            # also use asarray here
+            image_array = np.asarray(img, dtype=np.int8)
 
-            plt.figure("Figure VIII.1")
-            plt.imshow(image_array)
-            plt.axis('on')
-            plt.title("Original")
-            plt.show()
-
+            # Print the shape
+            print("The shape of image is: ", image_array.shape)
             return image_array
 
-    except FileNotFoundError as error:
-        print("Error: ", error)
-        raise error
-    except ValueError as error:
-        print("Error: ", error)
-        raise error
+    # I removed the two previous except statements because you are doing the same
+    # thing
     except Exception as error:
-        print("Error loading image: ", error)
-        raise error
+        print("Error: ", error)
+        # Same here, don't re-raise errors
+        return np.array([])
