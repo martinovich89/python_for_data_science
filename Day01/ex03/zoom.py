@@ -12,22 +12,22 @@ def main():
         # Load the image
         img = ft_load("animal.jpeg")
 
-        # Validate img format
-        if not isinstance(img, np.ndarray):
-            raise ValueError("Loaded data is not a valid numpy array")
-
-        if len(img.shape) != 3:
-            raise ValueError("Image must be a 3D array (h, w, c)")
+        # You know that your ft_load function will return a rightly formed array,
+        # so there is no need to perform those checks, just use the modified ft_load that
+        # returns an empty array and perform that unique check.
+        if not img:
+            print("An error occured during image loading, stopping now")
+            return
 
         # Print original img data
         print(img)
 
         # Get image dimensions
-        h, w, c = img.shape
+        # Unused variable name
+        h, w, _ = img.shape
 
-        # Validate image dimensions
-        if h < 400 or w < 400:
-            raise ValueError("Image too small for 400x400 zoom")
+        # The exercise assumes that the file will always be the provided animal.jpeg,
+        # so if it was correctly loaded, you don't need to check its sizes.
 
         # Calculate zoom area (center 400x400 pixels)
         zoom_size = 400
