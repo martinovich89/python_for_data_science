@@ -24,10 +24,6 @@ def ft_load(path: str) -> np.ndarray:
         if not isinstance(path, str):
             raise TypeError("Path must be a string")
 
-        # Check if file exists
-        if not os.path.exists(path):
-            raise FileNotFoundError(f"File '{path}' not found")
-
         # Get file extension to check format
         _, extension = os.path.splitext(path.lower())
         supported_formats = ['.jpg', '.jpeg']
@@ -50,12 +46,6 @@ def ft_load(path: str) -> np.ndarray:
             print("The shape of image is: ", image_array.shape)
             return image_array
 
-    except FileNotFoundError as error:
-        print("Error: ", error)
-        raise error
-    except ValueError as error:
-        print("Error: ", error)
-        raise error
     except Exception as error:
-        print("Error loading image: ", error)
-        raise error
+        print("Error: ", error)
+        return np.empty((0, 0, 0), dtype=np.uint8)

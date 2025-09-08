@@ -6,31 +6,20 @@ def main():
     try:
         # Test with the example from the subject
         # Note: this will only work if landscape.jpg exists
-        try:
-            print("Testing with landscape.jpg:")
-            image_data = ft_load("landscape.jpg")
-            print(image_data)
-            print("Image loaded successfully with shape:", image_data.shape)
-        except FileNotFoundError:
-            print("landscape.jpg not found, skipping this test")
+        print("Testing with landscape.jpg:")
+        image_data = ft_load("landscape.jpg")
+        if image_data.shape==(0, 0, 0):
+            raise Exception("Couldn't load the file. Quitting now")
+        print(image_data)
 
         print("\n--- Additional tests ---")
 
         # Test error handling
-        try:
-            ft_load("nonexistent.jpg")
-        except FileNotFoundError:
-            print("FileNotFoundError handled correctly")
+        ft_load("nonexistent.jpg")
 
-        try:
-            ft_load("test.txt")  # Unsupported format
-        except ValueError:
-            print("Unsupported format error handled correctly")
+        ft_load("test.txt")  # Unsupported format
 
-        try:
-            ft_load(123)  # Wrong type
-        except TypeError:
-            print("TypeError handled correctly")
+        ft_load(123)  # Wrong type
 
     except Exception as error:
         print("Unexpected error in main: ", error)

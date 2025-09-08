@@ -12,22 +12,16 @@ def main():
         # Load the image
         img = ft_load("animal.jpeg")
 
-        # Validate img format
-        if not isinstance(img, np.ndarray):
-            raise ValueError("Loaded data is not a valid numpy array")
-
-        if len(img.shape) != 3:
-            raise ValueError("Image must be a 3D array (h, w, c)")
+        # Check img
+        if img.shape==(0, 0, 0):
+            print("An error occured during image loading, stopping now")
+            return
 
         # Print original img data
         print(img)
 
         # Get image dimensions
-        h, w, c = img.shape
-
-        # Validate image dimensions
-        if h < 400 or w < 400:
-            raise ValueError("Image too small for 400x400 zoom")
+        h, w, _ = img.shape
 
         # Calculate zoom area (center 400x400 pixels)
         zoom_size = 400
@@ -85,12 +79,6 @@ def main():
 
         plt.show()
 
-    except FileNotFoundError:
-        print("Error: Image file 'animal.jpeg' not found")
-        return
-    except ValueError as error:
-        print("Error: Invalid image data - ", error)
-        return
     except Exception as error:
         print("Error: ", error)
         return

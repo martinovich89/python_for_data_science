@@ -58,12 +58,13 @@ def main():
         # Load the image
         img = ft_load("animal.jpeg")
 
+        # Check img
+        if img.shape==(0, 0, 0):
+            print("An error occured during image loading, stopping now")
+            return
+
         # Get image dimensions
         h, w, _ = img.shape
-
-        # Check if image is large enough for 400x400 crop
-        if h < 400 or w < 400:
-            raise ValueError("Image too small for 400x400 crop")
 
         # Calculate crop area
         crop_size = 400
